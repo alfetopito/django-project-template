@@ -1,6 +1,6 @@
-========================
-django-twoscoops-project
-========================
+=======================
+django-project-template
+=======================
 
 A project template for Django 1.5.
 
@@ -8,11 +8,11 @@ To use this project follow these steps:
 
 #. Create your working environment
 #. Install Django
-#. Create the new project using the django-two-scoops template
+#. Create the new project using the django-project-template
 #. Install additional dependencies
 #. Use the Django admin to create the project
 
-*note: these instructions show creation of a project called "icecream".  You
+*note: these instructions show creation of a project called "whatever".  You
 should replace this name with the actual name of your project.*
 
 Working Environment
@@ -28,7 +28,7 @@ Virtualenv Only
 First, make sure you are using virtualenv (http://www.virtualenv.org). Once
 that's installed, create your virtualenv::
 
-    $ virtualenv --distribute icecream
+    $ virtualenv --distribute whatever
 
 You will also need to ensure that the virtualenv has the project directory
 added to the path. Adding the project directory will allow `django-admin.py` to
@@ -41,9 +41,9 @@ In Linux and Mac OSX, you can install virtualenvwrapper (http://virtualenvwrappe
 which will take care of managing your virtual environments and adding the
 project path to the `site-directory` for you::
 
-    $ mkdir icecream
-    $ mkvirtualenv -a icecream icecream-dev
-    $ cd icecream && add2virtualenv `pwd`
+    $ mkdir whatever
+    $ mkvirtualenv -a whatever whatever-dev
+    $ cd whatever && add2virtualenv `pwd`
 
 Windows
 ----------
@@ -55,13 +55,13 @@ you will need to add a python pathfile named `_virtualenv_path_extensions.pth`
 to the `site-packages`. If you have been following the book, then your
 virtualenv folder will be something like::
 
-`~/.virtualenvs/icecream/lib/python2.7/site-directory/`
+`~/.virtualenvs/whatever/lib/python2.7/site-directory/`
 
 In the pathfile, you will want to include the following code (from
 virtualenvwrapper):
 
     import sys; sys.__plen = len(sys.path)
-    /home/<youruser>/icecream/icecream/
+    /home/<youruser>/whatever/whatever/
     import sys; new=sys.path[sys.__plen:]; del sys.path[sys.__plen:]; p=getattr(sys,'__egginsert',0); sys.path[p:p]=new; sys.__egginsert = p+len(new)
 
 Installing Django
@@ -74,10 +74,10 @@ To install Django in the new virtual environment, run the following command::
 Creating your project
 =====================
 
-To create a new Django project called '**icecream**' using
+To create a new Django project called '**whatever**' using
 django-twoscoops-project, run the following command::
 
-    $ django-admin.py startproject --template=https://github.com/twoscoops/django-twoscoops-project/archive/master.zip --extension=py,rst,html icecream
+    $ django-admin.py startproject --template=https://github.com/twoscoops/django-twoscoops-project/archive/master.zip --extension=py,rst,html whatever
 
 Installation of Dependencies
 =============================
