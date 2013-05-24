@@ -86,7 +86,7 @@ Depending on where you are installing dependencies:
 
 In development::
 
-    $ pip install -r requirements/local.txt
+    $ pip install -r requirements/dev.txt
 
 For production::
 
