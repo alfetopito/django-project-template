@@ -215,23 +215,67 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'semi_verbose': {
+            'format': '[%(asctime)s] %(levelname)s %(module)s %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
         }
     },
     'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console':{
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': stdout,
+            'formatter': 'semi_verbose'
+        },
+        'logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': join(SITE_ROOT, 'logs', 'general.log'),
+            'maxBytes': 50000,
+            'backupCount': 5,
+            'formatter': 'semi_verbose',
+        },
+        'db_logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': join(SITE_ROOT, 'logs', 'db.log'),
+            'maxBytes': 50000,
+            'backupCount': 5,
+            'formatter': 'semi_verbose',
+        },
     },
     'loggers': {
+        'django': {
+            'handlers': ['console', 'logfile'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['console', 'db_logfile'],
+            'level': 'DEBUG',
+            'propagate': False,
         },
     }
 }
