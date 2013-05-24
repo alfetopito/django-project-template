@@ -16,3 +16,9 @@ build
 
 # Logs:
 *.log
+
+# IDE:
+*.idea*
+
+# Vagrant:
+.vagrant
